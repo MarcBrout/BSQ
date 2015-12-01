@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Mon Nov 30 10:41:45 2015 marc brout
-** Last update Tue Dec  1 10:40:58 2015 marc brout
+** Last update Tue Dec  1 12:05:55 2015 marc brout
 */
 
 #include <stdlib.h>
@@ -32,6 +32,7 @@ char	*my_realloc(char *str, int size)
   while (i < size)
     tmp[i++] = 0;
   tmp[size] = 0;
-  free(str);
+  if (str != NULL)
+    free(str);
   return (tmp);
 }
