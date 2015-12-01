@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Thu Oct 29 14:45:48 2015 Pierre Bougon
-## Last update Mon Nov 30 19:16:20 2015 marc brout
+## Last update Tue Dec  1 10:47:48 2015 marc brout
 ##
 
 SRCP	= ./src/
@@ -13,6 +13,7 @@ SRCP	= ./src/
 SRC     = $(SRCP)bsq.c \
 	$(SRCP)my_strcat.c \
 	$(SRCP)transform.c \
+	$(SRCP)remains.c \
 	$(SRCP)my_realloc.c
 
 OBJS    = $(SRC:.c=.o)
