@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Mon Nov 30 10:41:45 2015 marc brout
-** Last update Tue Dec  1 12:05:55 2015 marc brout
+** Last update Tue Dec  1 14:20:01 2015 marc brout
 */
 
 #include <stdlib.h>
@@ -24,7 +24,7 @@ char	*my_realloc(char *str, int size)
   if ((tmp = malloc(size + 1)) == NULL)
     return (NULL);
   i = 0;
-  while (str[i])
+  while (str[i] && i < size)
     {
       tmp[i] = str[i];
       i += 1;

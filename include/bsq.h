@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Mon Nov 30 11:56:22 2015 marc brout
-** Last update Tue Dec  1 11:40:59 2015 marc brout
+** Last update Wed Dec 16 16:33:48 2015 marc brout
 */
 
 #ifndef BSQ_H_
@@ -27,7 +27,7 @@ typedef struct		s_map
   int			ymax;
 }			t_map;
 
-int my_errors(int);
+int my_errors(t_map *, int);
 int compare(t_map *, int, int);
 void set_max(t_map *, int, int, int);
 void putline_in_map(t_map *, char *, int);

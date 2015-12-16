@@ -5,7 +5,7 @@
 ** Login   <brout_m@epitech.net>
 ** 
 ** Started on  Mon Nov 30 11:54:41 2015 marc brout
-** Last update Tue Dec  1 12:03:58 2015 marc brout
+** Last update Wed Dec 16 17:26:39 2015 marc brout
 */
 
 #include "../include/bsq.h"
@@ -39,12 +39,16 @@ char	*read_map_first_line(t_map *map, int fd, char *buff)
     {
       buff[1] = 0;
       size += 1;
-      if ((str = my_realloc(str, size)) == NULL ||
+      if ((buff[0] != '.' && buff[0] != 'o') ||
+	  (str = my_realloc(str, size)) == NULL ||
 	  my_strcat(str, buff) == NULL)
 	return (NULL);
     }
-  if (map->width == -1)
-    return (NULL);
+  if (map->width <= 0)
+    {
+      free(str);
+      return (NULL);
+    }
   map->width = size;
   return (str);
 }
@@ -61,11 +65,12 @@ char	*read_next_lines(int fd, int size)
       ((l = read(fd, buff, size + 1)) == -1))
     return (NULL);
   buff[size + 1] = 0;
-  i = 0;
-  while (buff[i])
+  i = -1;
+  while (buff[++i])
     {
+      if (buff[i] != '.' && buff[i] != 'o' && buff[i] != '\n')
+      	return (NULL);
       str[i] = buff[i];
-      i += 1;
     }
   str[size] = 0;
   if (buff != NULL)
@@ -86,6 +91,11 @@ int	read_map_height(t_map *map, int fd, char *buff)
     {
       buff[1] = 0;
       size += 1;
+      if (buff[0] < '0' || buff[0] > '9')
+	{
+	  free(height);
+	  return (2);
+	}
       if ((height = my_realloc(height, size)) == NULL ||
 	  my_strcat(height, buff) == NULL)
 	return (1);
@@ -93,8 +103,7 @@ int	read_map_height(t_map *map, int fd, char *buff)
   if (map->height == -1)
     return (1);
   map->height = my_getnbr(height);
-  if (height != NULL)
-    free(height);
+  free(height);
   return (0);
 }
 
@@ -103,8 +112,11 @@ int		main(int ac, char **av)
   t_map		map;
 
   if (ac < 2)
-    return (1);
-  if (my_errors(open_file(&map, av[1])))
+    {
+      write(2, "Usage: ./bsq [map]\n", 20);
+      return (1);
+    }
+  if (my_errors(&map, open_file(&map, av[1])))
     return (1);
   transform(&map);
   show_tab(&map);
