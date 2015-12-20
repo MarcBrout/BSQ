@@ -5,7 +5,7 @@
 ## Login   <bougon_p@epitech.net>
 ## 
 ## Started on  Thu Oct 29 14:45:48 2015 Pierre Bougon
-## Last update Wed Dec 16 16:23:03 2015 marc brout
+## Last update Sun Dec 20 16:41:04 2015 marc brout
 ##
 
 SRCP	= ./src/
@@ -22,7 +22,7 @@ NAME    = bsq
 
 CC      = gcc
 
-CFLAGS  = -W -Wall -ansi -pedantic -g
+CFLAGS  = -W -Wall -ansi -pedantic
 
 LDFLAGS = -lmy -L./lib/
 
